@@ -3,39 +3,35 @@ const {
     DataTypes
 } = require("sequelize");
 const sequelize = require("../Database/connection");
-class Comment extends Model {}
+class Itinerary extends Model {}
 
-Comment.init({
-    id_comment: {
+Itinerary.init({
+    id_itinerary: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
         unique: true
     },
-    comment_text: {
-        type: DataTypes.STRING,
+    title: {
+        type: DataTypes.STRING(45),
         allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     // id_user: {
     //     type: DataTypes.STRING,
     //     allowNull: false,
+    //     defaultValue: ""
     // },
-    // id_identity: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    // },
-    deleted: {
-        type: DataTypes.INTEGER(1),
-        defaultValue: 0,
-        allowNull: false
-    }
 }, {
     sequelize,
     timestamps: true,
     createdAt: 'creation_date',
     updatedAt: 'updated_at',
-    modelName: "comment",
-    tableName: "comment",
+    modelName: "itinerary",
+    tableName: "itinerary",
 });
 
 
@@ -48,5 +44,5 @@ sequelize
     });
 
 module.exports = {
-    Comment
+    Itinerary
 };

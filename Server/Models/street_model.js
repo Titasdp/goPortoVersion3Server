@@ -3,39 +3,36 @@ const {
     DataTypes
 } = require("sequelize");
 const sequelize = require("../Database/connection");
-class Comment extends Model {}
+class Street extends Model {}
 
-Comment.init({
-    id_comment: {
+Street.init({
+    id_street: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
         unique: true
     },
-    comment_text: {
+    designation: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    // id_user: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    // },
-    // id_identity: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    // },
+
+    postal_code: {
+        type: DataTypes.STRING(45),
+        allowNull: false
+    },
     deleted: {
         type: DataTypes.INTEGER(1),
-        defaultValue: 0,
-        allowNull: false
-    }
+        allowNull: false,
+        defaultValue: 0
+    },
 }, {
     sequelize,
     timestamps: true,
     createdAt: 'creation_date',
     updatedAt: 'updated_at',
-    modelName: "comment",
-    tableName: "comment",
+    modelName: "street",
+    tableName: "street",
 });
 
 
@@ -48,5 +45,5 @@ sequelize
     });
 
 module.exports = {
-    Comment
+    Street
 };

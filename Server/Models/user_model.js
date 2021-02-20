@@ -5,6 +5,11 @@ const {
 const sequelize = require("../Database/connection");
 class User extends Model {}
 
+
+const userTypeModel = require("../Models/userType_model");
+const loginTypeModel = require("../Models/loginType_model");
+const userStatusModel = require("../Models/userStatus_model");
+
 User.init({
     id_user: {
         type: DataTypes.STRING,
@@ -28,18 +33,7 @@ User.init({
     password: {
         type: DataTypes.STRING(45),
         allowNull: true,
-    },
-    id_login_type: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-    },
-    id_user_type: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-    },
-    id_user_status: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
+        defaultValue
     },
     refreshToken: {
         type: DataTypes.STRING,
@@ -49,10 +43,49 @@ User.init({
 }, {
     sequelize,
     timestamps: true,
-    createdAt: 'creationDate',
-    updatedAt: 'updatedAt',
+    createdAt: 'creation_date',
+    updatedAt: 'updated_at',
     modelName: "user",
     tableName: "user",
+});
+// UserType Connection
+userTypeModel.UserType.hasMany(User, {
+    foreignKey: {
+        name: "id_user_type",
+        allowNull: false
+    }
+});
+User.belongsTo(userTypeModel.UserType, {
+    foreignKey: {
+        name: "id_user_type",
+        allowNull: false
+    }
+});
+// Login type
+loginTypeModel.LoginType.hasMany(User, {
+    foreignKey: {
+        name: "id_login_type",
+        allowNull: false
+    }
+});
+User.belongsTo(loginTypeModel.LoginType, {
+    foreignKey: {
+        name: "id_login_type",
+        allowNull: false,
+    }
+});
+// User Status type
+userStatusModel.UserStatus.hasMany(User, {
+    foreignKey: {
+        name: "id_user_status",
+        allowNull: false
+    }
+});
+User.belongsTo(userStatusModel.UserStatus, {
+    foreignKey: {
+        name: "id_user_status",
+        allowNull: false
+    }
 });
 
 

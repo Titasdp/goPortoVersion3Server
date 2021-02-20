@@ -29,14 +29,11 @@ Category.init({
 }, {
     sequelize,
     timestamps: true,
-    createdAt: 'creationDate',
-    updatedAt: 'updatedAt',
+    createdAt: 'creation_date',
+    updatedAt: 'updated_at',
     modelName: "category",
     tableName: "category",
 });
-
-
-
 sequelize
     .sync()
     .then()

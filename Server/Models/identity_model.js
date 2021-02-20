@@ -3,56 +3,53 @@ const {
     DataTypes
 } = require("sequelize");
 const sequelize = require("../Database/connection");
-class User extends Model {}
+class Identity extends Model {}
 
-User.init({
-    id_user: {
+Identity.init({
+    id_identity: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
         unique: true
     },
-    username: {
+    name: {
         type: DataTypes.STRING(45),
         allowNull: false
     },
-    email: {
+    information: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     img_url: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        defaultValue: ""
     },
-    password: {
-        type: DataTypes.STRING(45),
-        allowNull: true,
-    },
-    id_login_type: {
-        type: DataTypes.INTEGER(11),
+    lat: {
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
-    id_user_type: {
-        type: DataTypes.INTEGER(11),
+    lng: {
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
-    id_user_status: {
-        type: DataTypes.INTEGER(11),
+    shuted_down: {
+        type: DataTypes.INTEGER(1),
         allowNull: false,
+        defaultValue: 0,
     },
-    refreshToken: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        comment: "This is the field that we saved just for the refresh token."
-    }
+    deleted: {
+        type: DataTypes.INTEGER(1),
+        allowNull: false,
+        defaultValue: 0,
+    },
 }, {
     sequelize,
     timestamps: true,
-    createdAt: 'creationDate',
-    updatedAt: 'updatedAt',
-    modelName: "user",
-    tableName: "user",
+    createdAt: 'creation_date',
+    updatedAt: 'updated_at',
+    modelName: "identity",
+    tableName: "identity",
 });
 
 
@@ -65,5 +62,5 @@ sequelize
     });
 
 module.exports = {
-    User
+    Identity
 };
