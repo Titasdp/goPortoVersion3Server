@@ -29,7 +29,9 @@ Schedule.init({
 
 
 sequelize
-    .sync()
+    .sync({
+        alter: true
+    })
     .then()
     .catch(error => {
         console.log(error);

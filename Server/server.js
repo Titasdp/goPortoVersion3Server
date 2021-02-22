@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 3000;
-// const router = require("../Server/Routes/routes");
+const router = require("../Server/Routes/routes");
 // const expressSanitizer = require("express-sanitizer");
 
 app.use(bodyParser.json());
@@ -15,7 +15,7 @@ app.use(
 
 // app.use(expressSanitizer());
 
-// app.use(router);
+app.use(router);
 
 app.listen(port, () => {
     console.log(`Server is working on door: ${port}`);
