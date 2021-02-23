@@ -34,12 +34,6 @@ Category.init({
     modelName: "category",
     tableName: "category",
 });
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
 
 module.exports = {
     Category

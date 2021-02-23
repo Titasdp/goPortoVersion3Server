@@ -25,13 +25,6 @@ Day.init({
 
 
 
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
-
 module.exports = {
-    LoginType
+    Day
 };

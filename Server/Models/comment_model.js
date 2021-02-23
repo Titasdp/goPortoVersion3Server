@@ -3,6 +3,8 @@ const {
     DataTypes
 } = require("sequelize");
 const sequelize = require("../Database/connection");
+const userModel = require("../Models/user_model")
+const identityModel = require("../Models/identity_model")
 class Comment extends Model {}
 
 Comment.init({
@@ -37,16 +39,32 @@ Comment.init({
     modelName: "comment",
     tableName: "comment",
 });
-
-
-
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
-
+//User connection
+userModel.User.hasMany(Comment, {
+    foreignKey: {
+        name: "id_user",
+        allowNull: false,
+    }
+});
+Comment.belongsTo(userModel.User, {
+    foreignKey: {
+        name: "id_user",
+        allowNull: false,
+    }
+});
+// Identity connection
+identityModel.Identity.hasMany(Comment, {
+    foreignKey: {
+        name: "id_user",
+        allowNull: false,
+    }
+});
+Comment.belongsTo(identityModel.Identity, {
+    foreignKey: {
+        name: "id_user",
+        allowNull: false,
+    }
+});
 module.exports = {
     Comment
 };

@@ -35,15 +35,6 @@ Street.init({
     tableName: "street",
 });
 
-
-
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
-
 module.exports = {
     Street
 };

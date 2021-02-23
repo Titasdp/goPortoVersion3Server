@@ -1,3 +1,6 @@
+const {
+    response
+} = require("express");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
     "nunops_goporto",
@@ -12,5 +15,16 @@ const sequelize = new Sequelize(
         }
     }
 );
+
+sequelize
+    .sync({
+        alter: true
+    })
+    .then(response => {
+        console.log("Sequelize is working normally");
+    })
+    .catch(error => {
+        console.log(error);
+    });
 
 module.exports = sequelize;

@@ -24,15 +24,6 @@ UserType.init({
     tableName: "user_type",
 });
 
-
-
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
-
 module.exports = {
     UserType
 };

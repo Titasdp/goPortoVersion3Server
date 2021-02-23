@@ -3,6 +3,8 @@ const {
     DataTypes
 } = require("sequelize");
 const sequelize = require("../Database/connection");
+const userModel = require("../Models/user_model");
+
 class Itinerary extends Model {}
 
 Itinerary.init({
@@ -35,13 +37,19 @@ Itinerary.init({
 });
 
 
-
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
+// UserType Connection
+userModel.User.hasMany(Itinerary, {
+    foreignKey: {
+        name: "id_user",
+        allowNull: false,
+    }
+});
+Itinerary.belongsTo(userModel.User, {
+    foreignKey: {
+        name: "id_user",
+        allowNull: false,
+    }
+});
 
 module.exports = {
     Itinerary

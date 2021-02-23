@@ -26,17 +26,6 @@ Schedule.init({
     tableName: "schedule",
 });
 
-
-
-sequelize
-    .sync({
-        alter: true
-    })
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
-
 module.exports = {
-    LoginType
+    Schedule
 };

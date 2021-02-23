@@ -30,15 +30,6 @@ Locality.init({
     tableName: "itinerary",
 });
 
-
-
-sequelize
-    .sync()
-    .then()
-    .catch(error => {
-        console.log(error);
-    });
-
 module.exports = {
     Locality
 };
